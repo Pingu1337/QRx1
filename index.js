@@ -172,6 +172,17 @@ app.post('/advertise', (req, res) => {
   res.sendFile(__dirname + '/public/advertise-submitted.html');
 });
 
+/**
+ * testing headers
+ */
+app.get('/test', (req, res) => {
+  if (!req.header('x-rapidapi-host')) {
+    return res.sendFile(__dirname + '/public/get-access.html');
+  }
+  const headers = req.headers;
+  res.send(headers);
+});
+
 app.listen(port, () => {
   console.log(`QRx1 listening on port ${port}`);
 });
