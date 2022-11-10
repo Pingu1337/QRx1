@@ -91,6 +91,9 @@ Set custom expiration of unclaimed QR code
 4.  run `npm install` and you are done, the project should now be working on your local machine!
 5.  run `npm start` to start the server and serve the API on `http://localhost:3000`
 
+> Since the redirect is done on the same server(localhost) you cannot scan the QR codes with your phone. I would recommentd using a browser plugin or similar software to scan the QR codes. \
+> **[I'm using this chrome extension](https://chrome.google.com/webstore/detail/qr-code-reader/likadllkkidlligfcdhfnnbkjigdkmci)**
+
 <br>
 
 ## Related Repositories
