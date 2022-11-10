@@ -50,7 +50,7 @@ const genDynamicUrl = async (req, url) => {
   const newURL = new URL({ url, id });
   try {
     newURL.save();
-    setTimeout(() => destroyOnTimeout(id), timeOut || 10000);
+    setTimeout(() => destroyOnTimeout(id), timeOut || 180000);
   } catch (err) {
     res.send('An error was encountered! Please try again.');
   }
