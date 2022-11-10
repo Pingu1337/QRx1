@@ -5,20 +5,38 @@ import mongoose from 'mongoose';
 import { nanoid } from 'nanoid';
 import URL from './models/urlModel.js';
 import QRCode from 'qrcode';
+import middlewareConfig from './middleware/config.js';
+import { authRapid } from './services/auth.services.js';
 
+// .env variables
 dotenv.config();
-const __dirname = path.resolve();
-const app = express();
 const port = process.env.PORT;
 const debugPort = process.env.HOSTNAME == 'http://localhost' ? `:${port}` : '';
 const HOSTNAME = process.env.HOSTNAME;
+const environment = process.env.NODE_ENV || 'development';
+var isDevelopment = environment === 'development';
+
+// path resolver
+const __dirname = path.resolve();
+
+// express setup
+const app = express();
+// middleware
+if (isDevelopment) {
+  console.info('----------------------------------');
+  console.info('----- Development Envoirment -----');
+  console.info('----------------------------------');
+} else {
+  middlewareConfig(app);
+}
 
 // MongoDB
 mongoose.connect(process.env.MONGO_DB_URI, (err) => {
   if (err) {
     console.log(err);
   }
-  console.log('Database connected successfully');
+  console.info('------- Database connected -------');
+  console.info('----------------------------------');
 });
 
 /**
@@ -110,7 +128,7 @@ const getOpts = (options) => {
  * /qr API endpoint to generate QR code
  * Supports both req.body and req.query
  */
-app.get('/qr', async (req, res) => {
+app.get('/qr', authRapid, async (req, res) => {
   let opts = {};
   const { data } = req.query.data ? req.query : req.body;
   const { options } = req.body.data
@@ -173,16 +191,32 @@ app.post('/advertise', (req, res) => {
 });
 
 /**
- * testing headers
+ * Access Denied Endpoint - Redirect Here if Auth fails
  */
-app.get('/test', (req, res) => {
-  if (!req.header('x-rapidapi-host')) {
-    return res.sendFile(__dirname + '/public/get-access.html');
+app.get('/access-denied', (req, res) => {
+  res.status(401);
+  const accepts = req.header('accept') || ['json'];
+  if (accepts.includes(',')) {
+    return (
+      res.sendFile(__dirname + '/public/get-access.html') &&
+      !!accepts.split(',').find((e) => e == 'text/html')
+    );
   }
-  const headers = req.headers;
-  res.send(headers);
+
+  res.json({
+    message: 'Acces Denied',
+    getAccess: 'https://rapidapi.com/Pingu1337/api/qrx1',
+  });
+});
+
+/**
+ * Testing Authorization
+ */
+app.get('/testAuth', authRapid, (req, res) => {
+  res.send('Authorized!');
 });
 
 app.listen(port, () => {
-  console.log(`QRx1 listening on port ${port}`);
+  console.info(`-- QRx1 listening on port: ${port} --`);
+  console.info('----------------------------------');
 });
