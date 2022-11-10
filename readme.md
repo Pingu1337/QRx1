@@ -55,7 +55,7 @@ The `/qr` endpoint accepts a set of options if you want to change the appearance
 
 Set custom expiration of unclaimed QR code
 
-> Range from 0 - 600 seconds _(maximum lifetime is set to 60minutes by default)_
+> Range from 0 - 600 seconds _(maximum lifetime is 60minutes, defaults to 3minutes)_
 
 ##### Request Body
 
