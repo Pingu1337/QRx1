@@ -10,6 +10,7 @@ dotenv.config();
 const __dirname = path.resolve();
 const app = express();
 const port = process.env.PORT;
+const debugPort = process.env.HOSTNAME == 'http://localhost' ? 3131 : null;
 const HOSTNAME = process.env.HOSTNAME;
 
 // MongoDB
@@ -53,7 +54,7 @@ const genDynamicUrl = async (req, url) => {
   } catch (err) {
     res.send('An error was encountered! Please try again.');
   }
-  const dynamicURL = `${HOSTNAME}:${port}/link/${newURL.id}`;
+  const dynamicURL = `${HOSTNAME}:${debugPort || ''}/link/${newURL.id}`;
 
   return dynamicURL;
 };
