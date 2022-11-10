@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QRx1</title>
+  </head>
+  <body>
+    <main>
+      <div class="message-box">
+        <div class="innner-box">
+          <h1>This URL has been consumed.</h1>
+          <div class="small-message">
+            <p>redirecting...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <article class="advertisement">
+      <section>
+        <h3>You'd be surprised how many people try to use outdated URLs</h3>
+        <p>This would be a good place to put some Ads, dont you think?</p>
+        <a id="lnk">Advertise on this page</a>
+      </section>
+    </article>
+    <script>
+      const advertiseLink = document.getElementById('lnk');
+      advertiseLink.href = 'http://' + window.location.host + '/advertise';
+
+      function Redirect() {
+        window.location.href = 'https://www.berrykitten.com';
+      }
+      setTimeout(Redirect, 5000);
+    </script>
+  </body>
+</html>
+
+<style>
+  body {
+    font-family: consolas;
+    box-sizing: border-box;
+  }
+  main {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    margin-top: 25vh;
+  }
+  .message-box {
+    background-color: #d8d8d877;
+    padding: 3rem;
+  }
+  .inner-box p {
+    margin: auto;
+  }
+  .small-message {
+    text-align: center;
+  }
+  .advertisement {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 60%;
+    text-align: center;
+    box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.1);
+    /* margin: 1rem; */
+    padding: 1rem;
+  }
+  .advertisement a {
+    font-size: larger;
+  }
+</style>

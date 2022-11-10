@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QRx1</title>
+  </head>
+  <body>
+    <main>
+      <div class="message-box">
+        <div class="innner-box">
+          <h1>Advertisement</h1>
+          <div class="small-message"></div>
+          <form method="post">
+            <div class="input-group">
+              <label for="org">Name/Organization</label>
+              <input type="text" name="org" required />
+            </div>
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" required />
+            </div>
+            <div class="input-group">
+              <label for="msg">Message</label>
+              <textarea name="msg"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script>
+      function SubmitForm(e) {
+        console.log('sumbitting!');
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  body {
+    font-family: consolas;
+    box-sizing: border-box;
+  }
+  main {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    margin-top: 25vh;
+  }
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .input-group input {
+    padding: 0.25rem 0.33rem;
+  }
+  .input-group textarea {
+    width: 33vw;
+    height: 20vh;
+  }
+  form button {
+    padding: 0.25rem 0.8rem;
+    margin-top: 0.6rem;
+    margin-left: auto;
+    float: right;
+  }
+  @media screen and (max-width: 600px) {
+    html,
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    .input-group textarea {
+      width: 90vw;
+      resize: vertical;
+    }
+    main {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+</style>
