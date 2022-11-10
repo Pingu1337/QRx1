@@ -9,8 +9,8 @@ import QRCode from 'qrcode';
 dotenv.config();
 const __dirname = path.resolve();
 const app = express();
-const port = 3000;
-const HOSTNAME = 'http://localhost';
+const port = process.env.PORT;
+const HOSTNAME = process.env.HOSTNAME;
 
 // MongoDB
 mongoose.connect(process.env.MONGO_DB_URI, (err) => {
