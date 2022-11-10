@@ -54,7 +54,7 @@ const genDynamicUrl = async (req, url) => {
   } catch (err) {
     res.send('An error was encountered! Please try again.');
   }
-  const dynamicURL = `${HOSTNAME}:${debugPort || ''}/link/${newURL.id}`;
+  const dynamicURL = `${HOSTNAME}${`:${debugPort}` || ''}/link/${newURL.id}`;
 
   return dynamicURL;
 };
