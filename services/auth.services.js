@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const environment = process.env.NODE_ENV || 'development';
-var isDevelopment = environment === 'development';
+const isDevelopment = environment === 'development';
 
 const Auth = isDevelopment
   ? developmentAuth

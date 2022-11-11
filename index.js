@@ -7,6 +7,7 @@ import URL from './models/urlModel.js';
 import QRCode from 'qrcode';
 import middlewareConfig from './middleware/config.js';
 import { authRapid } from './services/auth.services.js';
+import sendEmail from './services/email.services.js';
 
 // .env variables
 dotenv.config();
@@ -179,20 +180,9 @@ app.get('/link/:id', async (req, res) => {
 });
 
 /**
- * Just some idéa i had about publishing Advertisment on the "this url is consumed page"
- */
-app.get('/advertise', (req, res) => {
-  return res.sendFile(__dirname + '/public/advertise.html');
-});
-app.post('/advertise', (req, res) => {
-  const { org, email, msg } = req.query;
-  console.log('TODO: save to DB');
-  res.sendFile(__dirname + '/public/advertise-submitted.html');
-});
-
-/**
  * Access Denied Endpoint - Redirect Here if Auth fails
  */
+
 app.get('/access-denied', (req, res) => {
   res.status(401);
   const accepts = req.header('accept') || ['json'];
@@ -214,6 +204,19 @@ app.get('/access-denied', (req, res) => {
  */
 app.get('/testAuth', authRapid, (req, res) => {
   res.send('Authorized!');
+});
+
+/**
+ * Just some idéa i had about publishing Advertisment on the "this url is consumed page"
+ */
+
+app.use(express.urlencoded({ extended: true }));
+app.get('/advertise', (req, res) => {
+  return res.sendFile(__dirname + '/public/advertise.html');
+});
+app.post('/advertise', async (req, res) => {
+  await sendEmail(req.body);
+  res.sendFile(__dirname + '/public/advertise-submitted.html');
 });
 
 app.listen(port, () => {
