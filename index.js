@@ -11,9 +11,9 @@ import sendEmail from './services/email.services.js';
 
 // .env variables
 dotenv.config();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 const debugPort = process.env.HOSTNAME == 'http://localhost' ? `:${port}` : '';
-const HOSTNAME = process.env.HOSTNAME;
+const HOSTNAME = process.env.HOSTNAME || 'http://localhost';
 const environment = process.env.NODE_ENV || 'development';
 var isDevelopment = environment === 'development';
 

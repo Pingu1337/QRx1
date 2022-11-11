@@ -23,14 +23,6 @@ To generate a QR code, simply make a GET request to the `/qr` endpoint and add a
 /qr?data=https://wikipedia.org
 ```
 
-Alternatively add a the URL in the body when making a GET request
-
-```json
-{
-  "data": "https://berrykitten.com"
-}
-```
-
 ## Customization
 
 The `/qr` endpoint accepts a set of options if you want to change the appearance of the QR code
@@ -61,7 +53,7 @@ Set custom expiration of unclaimed QR code
 
 ```json
 {
-  "data": "https://berrykitten.com",
+  . . .
   "timeout": 10 // Set custom timeout in seconds
 }
 ```
