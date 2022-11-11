@@ -14,6 +14,7 @@
 - Customizable apperance (color, size, margin and quality)
 - Runs MongoDB with TTL expiration
 - QR codes can only be used once, ideal for limited URLs such as authorization links or one-time offers
+- [QRx1 on rapidAPI](https://rapidapi.com/Pingu1337/api/qrx1)
 
 ## Usage
 
@@ -53,7 +54,6 @@ Set custom expiration of unclaimed QR code
 
 ```json
 {
-  . . .
   "timeout": 10 // Set custom timeout in seconds
 }
 ```
